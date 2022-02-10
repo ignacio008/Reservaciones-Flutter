@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "668968353377",
+    "project_id": "reservation-6e1b3",
+    "storage_bucket": "reservation-6e1b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668968353377:android:887b6117b64d281eb57420",
+        "android_client_info": {
+          "package_name": "com.example.z04_app_reservas_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668968353377-qlsb1ob8u8nmj6imtcoq0h8v6648isub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhjAWfTtG6qIfkxkeYIUkjWvgX7FOFvCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668968353377-qlsb1ob8u8nmj6imtcoq0h8v6648isub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668968353377:android:e2b6a4efb15f0bf9b57420",
+        "android_client_info": {
+          "package_name": "com.example.z04_app_reservas_firebase2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668968353377-qlsb1ob8u8nmj6imtcoq0h8v6648isub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhjAWfTtG6qIfkxkeYIUkjWvgX7FOFvCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668968353377-qlsb1ob8u8nmj6imtcoq0h8v6648isub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668968353377:android:49794bbbb7f14644b57420",
+        "android_client_info": {
+          "package_name": "termidad.z04_app_reservas_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668968353377-qlsb1ob8u8nmj6imtcoq0h8v6648isub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhjAWfTtG6qIfkxkeYIUkjWvgX7FOFvCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668968353377-qlsb1ob8u8nmj6imtcoq0h8v6648isub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
