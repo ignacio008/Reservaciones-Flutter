@@ -52,16 +52,19 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 },
                 ),
 
-                ListTile(title: Text("Mis Tiendas"),
+                ListTile(title: Text("Mis Reservaciones"),
                 leading: Icon(Icons.shopping_bag_outlined, color:Colors.black),
+                onTap:()=>ir_reservation(context),
+                ),
+
+
+                
+                ListTile(title: Text("Mis Tiendas"),
+                leading: Icon(Icons.store, color:Colors.black),
                 onTap:()=>mostratInicio(context),
                 ),
 
 
-                ListTile(title: Text("Mis Reservaciones"),
-                leading: Icon(Icons.save_outlined, color:Colors.black),
-                onTap:()=>ir_reservation(context),
-                ),
 
 
                 ListTile(title: Text("Notificaciones"),

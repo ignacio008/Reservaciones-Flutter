@@ -1223,6 +1223,7 @@ print(_textoPruebaMioSalida);
        listaserviciosNombre.removeAt(index1);
        listServiceDuration.removeAt(index1);
        listServiceDescription.removeAt(index1);
+         listImagen.removeAt(index1);
      indexMio--;
     });
     

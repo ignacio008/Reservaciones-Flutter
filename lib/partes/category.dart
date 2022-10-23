@@ -20,9 +20,11 @@ class _CategoryState extends State<Category> {
   List vacio=["uno"];
     ScrollController controller;
   List<TiendaModel> iconModelListCategory=[];
+  bool isLoading=false;
 //tienda
    void getlistaCategory(String categorybelleza)async{
     iconModelListCategory=await FetchData().getTopTiendaCategory(categorybelleza);
+    isLoading=true;
     print('Tengo ${iconModelListCategory.length} cards');
     setState(() {
       
@@ -62,6 +64,32 @@ class _CategoryState extends State<Category> {
     ),
 
              
+isLoading==false?Container(
+         
+
+         child: SliverList(
+
+                      delegate:SliverChildBuilderDelegate(
+                   (context, index) => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children:[
+                          SizedBox(height:MediaQuery.of(context).size.height*0.2),
+                      Container( 
+                        width: MediaQuery.of(context).size.width*0.7,
+                        height:MediaQuery.of(context).size.height*0.3,
+                      
+           child: Transform.scale(
+              scale: 0.9,
+             child: CircularProgressIndicator())) 
+                      ]),
+                      childCount: 1,
+
+                      ),
+                    ),
+):
+
+
+
 
 
          iconModelListCategory.isEmpty?Container(
@@ -94,7 +122,7 @@ class _CategoryState extends State<Category> {
                (context, index) =>  Row(
                                   mainAxisAlignment: MainAxisAlignment.center,              
                                   children: [              
-                  iconModelListCategory.isEmpty?CircularProgressIndicator(): SizedBox(height: 210,), WidgetCategory(iconModelListCategory[index], widget.iconmodel,)
+                  iconModelListCategory.isEmpty?CircularProgressIndicator(): SizedBox(height: MediaQuery.of(context).size.height*0.27,), WidgetCategory(iconModelListCategory[index], widget.iconmodel,)
                                 ],),
                   // Construye 1000 ListTiles
                   childCount: iconModelListCategory.length,

@@ -43,7 +43,7 @@ class _AllNotificationShoppWidgetState extends State<AllNotificationShoppWidget>
     return Container(
 
       width: MediaQuery.of(context).size.width*0.94,
-      height:MediaQuery.of(context).size.height*0.29,
+      height:MediaQuery.of(context).size.height*0.3,
      
       decoration: BoxDecoration(
         color:Colors.black,
@@ -54,7 +54,7 @@ class _AllNotificationShoppWidgetState extends State<AllNotificationShoppWidget>
         children: [
           Container(
             width: MediaQuery.of(context).size.width*0.57,
-      height:MediaQuery.of(context).size.height*0.29,
+      height:MediaQuery.of(context).size.height*0.3,
      
         padding: EdgeInsets.all(11),
             child: Column(

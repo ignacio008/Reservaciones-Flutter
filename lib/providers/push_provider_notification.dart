@@ -36,8 +36,6 @@ class PushNotificationProvider{
         print('Si se envio');
         print('Mi mensaje data es: ${message.data}');
         print("Mi mensahe es ${message}");
-
-  
         nameUser= message.data['nameUser']??'no-data';
         lastUser = message.data['lastUser']??'no-data';
         nameShop = message.data['nameShop']??'no-data';
@@ -47,25 +45,21 @@ class PushNotificationProvider{
         shopToken=message.data['shopToken']??'no-data'; 
         mytokenUsuraio=message.data['myToken']??'no-datas1';
         status=message.data['status']??'no-data';
-
         idNotification=message.data['idNotification']??'no-data';
-         idReservation=message.data['idReservation']??'no-data';
-
-       List nombres=[nameUser,lastUser,nameShop,nameService,numberPhone,reservationDate,shopToken,mytokenUsuraio,status,idNotification,idReservation];
-      
-  
-  _mensajesStreamController.sink.add(nombres);
-   if (message.notification != null) {
-    print('Message: ${message.notification}');
-  }
-});
+        idReservation=message.data['idReservation']??'no-data';
+     List nombres=[nameUser,lastUser,nameShop,nameService,numberPhone,reservationDate,shopToken,mytokenUsuraio,status,idNotification,idReservation];
+       _mensajesStreamController.sink.add(nombres);
+      if (message.notification != null) {
+        print('Message: ${message.notification}');
+      }
+    });
 
 
      
      FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage message) {
-  print('Si se envio');
-  print('Mi mensaje data es: ${message.data}');
-  print("Mi mensahe es ${message}");
+      print('Si se envio');
+      print('Mi mensaje data es: ${message.data}');
+      print("Mi mensahe es ${message}");
 
       nameUser= message.data['nameUser']??'no-data';
       lastUser = message.data['lastUser']??'no-data';
@@ -75,20 +69,40 @@ class PushNotificationProvider{
       reservationDate = message.data['reservationDate']??'no-data';  
       shopToken=message.data['shopToken']??'no-data'; 
       mytokenUsuraio=message.data['myToken']??'no-datas1';
-      status=message.data['status']??'no-data';
-        
-        idNotification=message.data['idNotification']??'no-data';
-        idReservation=message.data['idReservation']??'no-data';
+      status=message.data['status']??'no-data';  
+      idNotification=message.data['idNotification']??'no-data';
+      idReservation=message.data['idReservation']??'no-data';
     List nombres=[nameUser,lastUser,nameShop,nameService,numberPhone,reservationDate,shopToken,mytokenUsuraio,status,idNotification,idReservation];
   
-  _mensajesStreamController.sink.add(nombres);
+     _mensajesStreamController.sink.add(nombres);
       if (message.notification != null) {
         print('Message: ${message.notification}');
         }
      });
-    }
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      nameUser= message.data['nameUser']??'no-data';
+      lastUser = message.data['lastUser']??'no-data';
+      nameShop = message.data['nameShop']??'no-data';
+      nameService = message.data['nameService']??'no-data';
+      numberPhone = message.data['numberPhone']??'no-data'; 
+      reservationDate = message.data['reservationDate']??'no-data';  
+      shopToken=message.data['shopToken']??'no-data'; 
+      mytokenUsuraio=message.data['myToken']??'no-datas1';
+      status=message.data['status']??'no-data';  
+      idNotification=message.data['idNotification']??'no-data';
+      idReservation=message.data['idReservation']??'no-data';
+    List nombres=[nameUser,lastUser,nameShop,nameService,numberPhone,reservationDate,shopToken,mytokenUsuraio,status,idNotification,idReservation];
 
+   _mensajesStreamController.sink.add(nombres);
 
+      if (message.notification != null) {
+        print('Message: ${message.notification}');
+        }
+     
+
+    });
+    
+  }
 
     dispose(){
       _mensajesStreamController?.close();

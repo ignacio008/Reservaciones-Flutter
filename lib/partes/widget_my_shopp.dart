@@ -31,82 +31,116 @@ class _WidgetMyShoppState extends State<WidgetMyShopp> {
           width: MediaQuery.of(context).size.width*0.9,
           height: MediaQuery.of(context).size.height*0.25,
          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color:Colors.grey[600],
-              image: DecorationImage(
-                                    image: NetworkImage(widget.iconmodel.imagenTienda),
-                                  fit:BoxFit.cover,
-                                ),
-            ),
-            alignment: Alignment.bottomLeft,
+           borderRadius: BorderRadius.circular(8.0),
+            color:Colors.grey[800],
+         ),
+            child: Stack(
+                            alignment: Alignment.centerLeft,
+              children: [
+                    Container(
+                        width: MediaQuery.of(context).size.width*0.9,
+          height: MediaQuery.of(context).size.height*0.25,
+         decoration: BoxDecoration(
+           borderRadius: BorderRadius.circular(10.0),
+         ),
+                child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),      
+                child: Image.network(widget.iconmodel.imagenTienda==null?"https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg":widget.iconmodel.imagenTienda,fit: BoxFit.cover,
+
+                  loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent loadingProgress) {
+                   if (loadingProgress == null) {
+            return child;
+          }
+          return Center(
             child: Container(
-              width: MediaQuery.of(context).size.width*0.9,
-              height: MediaQuery.of(context).size.height*0.09,
-              decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
-              color: Colors.black.withOpacity(0.54),
+              width:MediaQuery.of(context).size.width*0.65,
+              height:MediaQuery.of(context).size.height*0.3,
+               decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),               
             ),
-          
-          child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              
-              Container(
-                padding:EdgeInsets.all(6),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                  
-                      Text("${widget.iconmodel.nameShop[0].toUpperCase()}${widget.iconmodel.nameShop.substring(1)}",style:TextStyle(fontSize: 27, color:Colors.white, fontWeight:FontWeight.bold ),),
-                       SizedBox(height: 3,),
-                      Text("Categoria: ${widget.iconmodel.category}" ,style:TextStyle(fontSize: 10,color:Colors.white )),
-                  ],
+              child: Transform.scale(
+                scale:0.5,
+                child: CircularProgressIndicator(
+                   valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                   strokeWidth:9.0,
                 ),
               ),
-             
+            ),
+          );
+                },
+                      )),
+                    ),
+
+
+                 Positioned(
+                    bottom: 0.0,
+                    child:
+                Container(
+                  width: MediaQuery.of(context).size.width*0.9,
+                  height: MediaQuery.of(context).size.height*0.09,
+                  decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+                  color: Colors.black.withOpacity(0.54),
+                ),   
+          child: Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  
+                  Container(
+                    padding:EdgeInsets.all(6),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [   
+                          Text("${widget.iconmodel.nameShop[0].toUpperCase()}${widget.iconmodel.nameShop.substring(1)}",style:TextStyle(fontSize: 27, color:Colors.white, fontWeight:FontWeight.bold ),),
+                           SizedBox(height: 3,),
+                          Text("Categoria: ${widget.iconmodel.category}" ,style:TextStyle(fontSize: 10,color:Colors.white )),
+                      ],
+                    ),
+                  ),
+                 
       
-                  Row(
-                    children: [
-              
+                      Row(
+                        children: [
+
+                       GestureDetector(
+                         onTap:(){
+                                 
+                                  print("estoy presionando Borrado");
+                                 
+                                  mostrarOpciones(context);
+                         },
+                         child: Container( 
+                                width: 40,
+                                height: 44,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                   
+                                    Icon(Icons.delete, color:Colors.white)
+                                   
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                   color: Color(0x00000000),
+                                ),
+                              ),
+                       ),
       
       
       
       
-      
-                   GestureDetector(
-                     onTap:(){
-                             
-                              print("estoy presionando Borrado");
-                             
-                              mostrarOpciones(context);
-                     },
-                     child: Container( 
-                            width: 40,
-                            height: 44,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                               
-                                Icon(Icons.delete, color:Colors.white)
-                               
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                               color: Color(0x00000000),
-                            ),
-                          ),
-                   ),
-      
-      
-      
+                    ],
+                                    ),
       
                 ],
-                                ),
-      
-            ],
           ),
+                ),
+
+                 ),
+              ],
             ),
         ),
       ),
@@ -121,10 +155,6 @@ class _WidgetMyShoppState extends State<WidgetMyShopp> {
 
   }
 
-
-
-
-  
 
     void mostrarOpciones(BuildContext context){
        String cardEliminado="La Tienda ha sido eliminado con exito!!";

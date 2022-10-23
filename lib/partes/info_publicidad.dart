@@ -39,6 +39,9 @@ class _InfoPublicidadState extends State<InfoPublicidad> with SingleTickerProvid
     getlistaCategory(widget.iconmodelPublicidadUrl.urlTienda);
     super.initState();
   }
+   changepage(int page){
+     controlador.animateTo(page);
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +91,7 @@ class _InfoPublicidadState extends State<InfoPublicidad> with SingleTickerProvid
         )
         ):
        
-          InfoPublicidadDescription(iconmodellistTienda[0], widget.iconmodelUsuario),
+          InfoPublicidadDescription(iconmodellistTienda[0], widget.iconmodelUsuario,changepage),
         //  ColumnaUnoDescription(widget.iconmodel),
 
        iconmodellistTienda.isEmpty?CircularProgressIndicator()  :    InfoPublicidadService(iconmodellistTienda[0], widget.iconmodelUsuario),

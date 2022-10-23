@@ -15,11 +15,12 @@ class AllMyReservation extends StatefulWidget {
 class _AllMyReservationState extends State<AllMyReservation> {
   List<Reservation> iconModelList=[];
    ScrollController controller;
-  
+  bool isLoading=false;
 
  void getlista(String idusuario)async{
     iconModelList=await FetchData().getTopMyReservation(idusuario);
     print('Tengo ${iconModelList.length} cards');
+    isLoading=true;
     setState(() {
       
     });
@@ -42,6 +43,26 @@ class _AllMyReservationState extends State<AllMyReservation> {
       ),
       body: 
       
+
+      isLoading==false? Container(
+
+       child: Center(
+         child: Column(
+                         
+                          children:[
+                            SizedBox(height:MediaQuery.of(context).size.height*0.2),
+                        Container( 
+                          width: MediaQuery.of(context).size.width*0.7,
+                          height:MediaQuery.of(context).size.height*0.3,
+                        
+             child: Transform.scale(
+                scale: 0.9,
+               child: CircularProgressIndicator())) 
+                        ]),
+       ),
+
+      ):
+
       iconModelList.isEmpty?Center(
         child: Container(
                       child: Column(

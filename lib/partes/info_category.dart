@@ -18,14 +18,7 @@ class InfoCategory extends StatefulWidget {
 class _InfoCategoryState extends State<InfoCategory>with SingleTickerProviderStateMixin {
    TabController controlador;
 
-  // List<Service> iconModelListService=[];
-  //   void getlistaCategory(String idShop)async{
-  //   iconModelListService=await FetchData().getTopServicios(idShop);
-  //   print('Tengo ${iconModelListService.length} serivicios');
-  //   setState(() {
-      
-  //   });
-  // }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -34,9 +27,9 @@ class _InfoCategoryState extends State<InfoCategory>with SingleTickerProviderSta
      //getlistaCategory(widget.iconmodel.idShop);
     super.initState();
   }
-  // changepage(int page){
-  //   //controlador.animateTo(page);
-  // }
+   changepage(int page){
+     controlador.animateTo(page);
+   }
    
   @override
   Widget build(BuildContext context) {
@@ -51,11 +44,11 @@ class _InfoCategoryState extends State<InfoCategory>with SingleTickerProviderSta
             tabs: [
               Tab(
                 
-                icon:Icon(Icons.calendar_today,size:20),
+                icon:Icon(Icons.store,size:20),
                 text:"Descripcion",
               ),
                Tab(
-                icon:Icon(Icons.alarm,size:20),
+                icon:Icon(Icons.storefront,size:20),
                 text:"Servicios",
               ),
             
@@ -67,7 +60,7 @@ class _InfoCategoryState extends State<InfoCategory>with SingleTickerProviderSta
           controller:controlador,
           children: [
             
-         ColumnaUnoDescription(widget.iconmodel),
+         ColumnaUnoDescription(widget.iconmodel,changepage),
          ColumnaDosService(widget.iconmodel,widget.iconmodelUsuario,),
         
           ],

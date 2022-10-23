@@ -7,8 +7,9 @@ import 'package:z04_app_reservas_firebase/partes/columna_dos_service.dart';
 
 class WidgetColumnaUnoDesc extends StatefulWidget {
   TiendaModel iconmodel;
+  Function changeAnimation;
   
-  WidgetColumnaUnoDesc(this.iconmodel);
+  WidgetColumnaUnoDesc(this.iconmodel, this.changeAnimation);
 
   @override
   _WidgetColumnaUnoDescState createState() => _WidgetColumnaUnoDescState();
@@ -165,13 +166,13 @@ ScrollController controller;
           ),
            SizedBox(height:30),
 
-           Text('Realiza tu reservacion en nuestra Tienda "${widget.iconmodel.nameShop}"'),
-           SizedBox(height:20),
-           Icon (Icons.arrow_downward_sharp, size:28),
+           Text('Revisa nuestros servicios en nuestra Tienda "${widget.iconmodel.nameShop}"'),
+           SizedBox(height:18),
+           Icon (Icons.arrow_downward_sharp, size:31),
            GestureDetector(
                    onTap:(){
                               // Navigator.push(context, MaterialPageRoute(builder: (context)=>ColumnaDosService(widget.changePage(1))));
-
+                        widget.changeAnimation(1);
                             print("");
                    },
                    child: Container( 
@@ -180,9 +181,9 @@ ScrollController controller;
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Reservar",style:TextStyle( color:Colors.white, fontWeight:FontWeight.bold )),
+                              Text("Servicios",style:TextStyle( color:Colors.white, fontWeight:FontWeight.bold )),
                               SizedBox(width: 5,),
-                              Icon(Icons.calendar_today_rounded, color:Colors.white)
+                              Icon(Icons.arrow_forward, color:Colors.white)
                              
                             ],
                           ),

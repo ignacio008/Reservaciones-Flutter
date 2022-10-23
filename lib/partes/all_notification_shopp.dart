@@ -16,11 +16,13 @@ class AllNotificationShopp extends StatefulWidget {
 class _AllNotificationShoppState extends State<AllNotificationShopp> {
   ScrollController controller;
   List<NotificationModel> iconModelList=[];
+  bool isLoading=false;
    void getMyNotificationcompue(String idusuarioShop, int status)async{
     iconModelList=await FetchData().getTopMynotificationes(idusuarioShop, status);
+    isLoading=true;
     print('Tengo ${iconModelList.length} cards');
     setState(() {
-      
+
     });
   }
   @override
@@ -70,6 +72,24 @@ class _AllNotificationShoppState extends State<AllNotificationShopp> {
              height:MediaQuery.of(context).size.height*0.75,
              child:
 
+        isLoading==false? Container(
+           child: Center(
+             child: Column(   
+                          children:[
+                            SizedBox(height:MediaQuery.of(context).size.height*0.2),
+                        Container( 
+                          width: MediaQuery.of(context).size.width*0.7,
+                          height:MediaQuery.of(context).size.height*0.3, 
+             child: Transform.scale(
+                scale: 0.9,
+               child: CircularProgressIndicator())) 
+                        ]),
+       ),
+      ):
+            
+
+
+
               iconModelList.isEmpty?Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -77,9 +97,10 @@ class _AllNotificationShoppState extends State<AllNotificationShopp> {
                   Icon(Icons.warning_amber_rounded, size:230, color:Colors.orange[600]),
                   Text("¡No Tienes ninguna Notificacion por confirmar!"),
                 ]),
-
-
               ):
+
+               
+      
              Scrollbar(
             isAlwaysShown: true,
             controller: controller,

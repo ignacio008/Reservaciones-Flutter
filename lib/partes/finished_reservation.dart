@@ -29,12 +29,13 @@ class _FinishedReservationState extends State<FinishedReservation> {
   ScrollController controller;
   DateTime hoy= DateTime.now();
   FToast fToast;
+  bool isLoaded=false;
 
   void getlista(String idusuario, String idShop)async{
     iconModelList=await FetchData().getTopMyfinished(idusuario,idShop);
     print('Tengo ${iconModelList.length} cards');
     setState(() {
-      
+      isLoaded=true;
     });
   }
 
@@ -67,12 +68,33 @@ class _FinishedReservationState extends State<FinishedReservation> {
       body:Container(
         width:MediaQuery.of(context).size.width,
         height:MediaQuery.of(context).size.height,
-        child: iconModelList.isEmpty?Container(
+        child: 
+        
+        isLoaded==false? Container(
+
+       child: Center(
+         child: Column(
+                         
+                          children:[
+                            SizedBox(height:MediaQuery.of(context).size.height*0.2),
+                        Container( 
+                          width: MediaQuery.of(context).size.width*0.7,
+                          height:MediaQuery.of(context).size.height*0.3,
+                        
+             child: Transform.scale(
+                scale: 0.9,
+               child: CircularProgressIndicator())) 
+                        ]),
+       ),
+
+      ):
+        
+        iconModelList.isEmpty?Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children:[
                   Icon(Icons.warning_amber_rounded, size:230, color:Colors.orange[600]),
-                  Text("¡No Tiene ninguna solicitud por aceptar!"),
+                  Text("¡No Tiene ninguna reservacion finalizada!"),
                 ]),
 
 

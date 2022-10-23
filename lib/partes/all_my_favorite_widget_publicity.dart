@@ -54,7 +54,29 @@ class _AllMyFavoriteWidgetPublicityState extends State<AllMyFavoriteWidgetPublic
                 borderRadius: BorderRadius.circular(7.0),
 
                 
-                child: Image.network(widget.iconmodelPublicidadUrl.imagenPublicidad==null?"https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg":widget.iconmodelPublicidadUrl.imagenPublicidad,fit: BoxFit.cover, ))
+                child: Image.network(widget.iconmodelPublicidadUrl.imagenPublicidad==null?"https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg":widget.iconmodelPublicidadUrl.imagenPublicidad,fit: BoxFit.cover, 
+                loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent loadingProgress) {
+                   if (loadingProgress == null) {
+            return child;
+          }
+          return Center(
+            child: Container(
+              width:MediaQuery.of(context).size.width*0.6,
+              height:MediaQuery.of(context).size.height*0.3,
+              child: Transform.scale(
+                scale:0.5,
+                child: CircularProgressIndicator(
+                   valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                   strokeWidth:7.0,
+                ),
+              ),
+            ),
+          );
+                },
+                
+                  ),
+                ),
     
       ),
     );

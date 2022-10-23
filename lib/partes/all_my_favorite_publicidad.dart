@@ -17,13 +17,14 @@ class AllMFavoritePublicity extends StatefulWidget {
 class _AllMFavoritePublicityState extends State<AllMFavoritePublicity> {
    List<AdminModel>iconModelListPublicidadAdmin=[];
   SwiperController _controller = SwiperController();
-  
+  bool isLoaded=false;
 
  
 
   void getlistaPublicidad()async{
     iconModelListPublicidadAdmin=await FetchData().getTopPublicidadUrl();
     print('Tengo ${iconModelListPublicidadAdmin.length} publicidad');
+    isLoaded=true;
     setState(() {
       
     });
@@ -65,7 +66,26 @@ class _AllMFavoritePublicityState extends State<AllMFavoritePublicity> {
         child:
 
         
-              iconModelListPublicidadAdmin.isEmpty?Container(
+         isLoaded==false? Container(
+       child: Center(
+         child: Column(
+                          children:[
+                           
+                        Container( 
+                          width: MediaQuery.of(context).size.width*0.5,
+                          height:MediaQuery.of(context).size.height*0.2,
+                   
+             child: Transform.scale(
+                scale: 0.9,
+               child: CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue[800])
+               ))) 
+                        ]),
+       ),
+
+      ):    
+             
+             iconModelListPublicidadAdmin.isEmpty?Container(
                    width:MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height*0.23,
                 child: Column(
@@ -78,6 +98,9 @@ class _AllMFavoritePublicityState extends State<AllMFavoritePublicity> {
 
               ):
               Swiper(
+                autoplay: true,
+                duration: 500 ,
+                autoplayDelay:8000,
                controller: _controller,
                 itemBuilder: (BuildContext context,int index){
                  

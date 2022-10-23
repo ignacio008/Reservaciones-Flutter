@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:z04_app_reservas_firebase/firebase/fetch_data.dart';
 import 'package:z04_app_reservas_firebase/models/reservacion_model.dart';
 import 'package:z04_app_reservas_firebase/models/tienda_model.dart';
@@ -19,12 +20,14 @@ class _FinishReservationState extends State<FinishReservation> {
 
   List<Reservation> iconModelList=[];
   ScrollController controller;
+  bool isLoaded =false;
+  
   
   void getlista(String idusuario, int finishReservation, String idShop)async{
     iconModelList=await FetchData().getTopMyReservationFinish(idusuario,finishReservation,idShop);
     print('Tengo ${iconModelList.length} cards');
     setState(() {
-      
+      isLoaded=true;
     });
   }
 
@@ -32,6 +35,7 @@ class _FinishReservationState extends State<FinishReservation> {
    void initState() {
       controller= ScrollController();
        getlista(widget.idUserScanner,0, widget.iconmodelShop.idShop);
+       
      super.initState();
    }
   @override
@@ -51,12 +55,31 @@ class _FinishReservationState extends State<FinishReservation> {
           child:
 
 
+
+      isLoaded==false? Container(
+
+       child: Center(
+         child: Column(
+                         
+                          children:[
+                            SizedBox(height:MediaQuery.of(context).size.height*0.2),
+                        Container( 
+                          width: MediaQuery.of(context).size.width*0.7,
+                          height:MediaQuery.of(context).size.height*0.3,
+                        
+             child: Transform.scale(
+                scale: 0.9,
+               child: CircularProgressIndicator())) 
+                        ]),
+       ),
+
+      ):
          iconModelList.isEmpty?Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children:[
                   Icon(Icons.warning_amber_rounded, size:230, color:Colors.orange[600]),
-                  Text("¡No Tiene ninguna solicitud por aceptar!"),
+                  Text("¡No Tiene ninguna solicitud por finalizar!"),
                 ]),
 
 

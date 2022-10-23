@@ -5,8 +5,9 @@ import 'package:z04_app_reservas_firebase/partes/widegt_columna_uno_description.
 
 class ColumnaUnoDescription extends StatefulWidget {
   TiendaModel iconmodel;
+  Function changeAnimation;
  
-  ColumnaUnoDescription(this.iconmodel);
+  ColumnaUnoDescription(this.iconmodel,this.changeAnimation);
 
   @override
   _ColumnaUnoDescriptionState createState() => _ColumnaUnoDescriptionState();
@@ -63,7 +64,7 @@ class _ColumnaUnoDescriptionState extends State<ColumnaUnoDescription> {
                                   children: [              
                   // iconModelListCategory.isEmpty?CircularProgressIndicator(): SizedBox(height: 210,), WidgetCategory(iconModelListCategory[index], widget.iconmodel,)
                 
-                  WidgetColumnaUnoDesc(widget.iconmodel,),
+                  WidgetColumnaUnoDesc(widget.iconmodel,widget.changeAnimation),
                                 ],),
                   // Construye 1000 ListTiles
                   childCount: 1,

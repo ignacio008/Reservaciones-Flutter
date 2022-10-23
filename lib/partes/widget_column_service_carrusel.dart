@@ -83,7 +83,34 @@ class _WidgetColumnServiceCarruselState extends State<WidgetColumnServiceCarruse
             child: Container(
                width:MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height*0.35,
-              child: Image.network(widget.iconmodelService.imageService==null?"https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg":widget.iconmodelService.imageService,fit: BoxFit.cover,)),
+              child: Image.network(widget.iconmodelService.imageService==null?"https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg":widget.iconmodelService.imageService,fit: BoxFit.cover,
+
+                  loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent loadingProgress) {
+                   if (loadingProgress == null) {
+            return child;
+          }
+          return Center(
+            child: Container(
+              width:MediaQuery.of(context).size.width*0.7,
+              height:MediaQuery.of(context).size.height*0.3,
+              child: Transform.scale(
+                scale:0.5,
+                child: CircularProgressIndicator(
+                   valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                   strokeWidth:9.0,
+                ),
+              ),
+            ),
+          );
+                },
+              
+              
+              
+              
+              
+              
+              )),
           ),
         ),
 

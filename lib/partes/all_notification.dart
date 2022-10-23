@@ -13,13 +13,16 @@ class AllNotification extends StatefulWidget {
   _AllNotificationState createState() => _AllNotificationState();
 }
 class _AllNotificationState extends State<AllNotification> {
+  bool isLoaded=false;
  
  List iconmodellistNotificationUsuario=[];
+
    void getlistaNotificacion(String idusuario, int status,)async{
      iconmodellistNotificationUsuario=await FetchData().getTopMynotificationUsuario(idusuario,status, );
+    setState(() {
+       isLoaded=true;
+    });
      print('Tengo ${iconmodellistNotificationUsuario.length} Tiendas');
-
-     
    }
 
   ScrollController controller;
@@ -92,6 +95,27 @@ class _AllNotificationState extends State<AllNotification> {
              width:MediaQuery.of(context).size.width,
              height:MediaQuery.of(context).size.height*0.75,
              child:
+
+
+
+              isLoaded==false? Container(
+       child: Center(
+         child: Column(
+                         
+                          children:[
+                            SizedBox(height:MediaQuery.of(context).size.height*0.2),
+                        Container( 
+                          width: MediaQuery.of(context).size.width*0.7,
+                          height:MediaQuery.of(context).size.height*0.3,
+                        
+             child: Transform.scale(
+                scale: 0.9,
+               child: CircularProgressIndicator())) 
+                        ]),
+       ),
+
+      ):
+
 
               iconmodellistNotificationUsuario.isEmpty?Container(
                 child: Column(

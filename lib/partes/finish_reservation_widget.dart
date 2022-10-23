@@ -28,7 +28,7 @@ class _FinishReservationWidgetState extends State<FinishReservationWidget> {
     String id_variable="";
     final comentarios= TextEditingController();
     DateTime hoy=DateTime.now();
-
+     FToast fToast;
 
 
 
@@ -43,6 +43,8 @@ class _FinishReservationWidgetState extends State<FinishReservationWidget> {
   void initState() {
     generateRandomString(10);
     // TODO: implement initState
+     fToast = FToast();
+    fToast.init(context);
     super.initState();
   }
   @override
@@ -326,7 +328,7 @@ class _FinishReservationWidgetState extends State<FinishReservationWidget> {
 
   void finishRegister() async{
 
-  String reservaCreada="Felicidades A Finalizado a reservacion del usuario";
+  String reservaCreada="Felicidades A Finalizado la reservacion del usuario";
   String error="error ";
   String comentarios_ =comentarios.text.trim();
   String msnToastHorario="Por favor escriba por los menos 6 caracteres";
@@ -355,17 +357,24 @@ class _FinishReservationWidgetState extends State<FinishReservationWidget> {
 
     ),);
       if(erroguardar){
-      showToast(error);
+    showToastError(error);
       }else{
          
           bool erroguardaReservr=await QuerysService().actualizarReservaFinish(reference: "reservas", id:widget.iconmodelResrvation.idReservation, collectionValues:Reservation().toJsonBodyActualizarReservationFinih(finish
 
           ),);
        if(erroguardaReservr){
-           showToast(error);
+        
+           showToastError(error);
        }
       else{
-
+              _cargando(context);
+      int status=0;
+       fToast.showToast(
+           toastDuration: Duration(seconds: 2),
+           gravity: ToastGravity.CENTER,
+        child: customizedLeadingIconWidget,
+          );
             showToast(reservaCreada);
            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>home1(widget.iconmodelUsuario,status)));
       }
@@ -378,18 +387,83 @@ class _FinishReservationWidgetState extends State<FinishReservationWidget> {
 
 
   }
-
+  void showToastError(mensaje) {
+    Fluttertoast.showToast(
+        msg: mensaje,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 14.0,
+    );
+  }
   void showToast(mensaje) {
     Fluttertoast.showToast(
         msg: mensaje,
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 3,
-        backgroundColor: Colors.teal[400],
+        backgroundColor: Colors.teal[700],
         textColor: Colors.white,
         fontSize: 14.0,
     );
   }
 
+  Widget customizedLeadingIconWidget = 
+      
+            Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+        width: 400,
+        height:230,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: Colors.teal[700],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.check_circle, // Set your own leading icon!
+              color: Colors.white,
+              size:140,
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Text("Felicidades se finalizo la reserva del usuario!!!", style:TextStyle(color: Colors.white)),
+          ],
+        ),
+      );
+
+   void _cargando(BuildContext context){
+       String cardEliminado="La Tienda ha sido eliminado con exito!!";
+      showDialog(context: context, builder: (context) {
+        return AlertDialog(
+        
+          title:Text("Cargando... ", style:TextStyle(color:Colors.white, fontSize:19)),
+         content:Container(
+           height:130,
+          
+           child: Column(
+             children: [
+           
+              Text("Por favor espere a que termine de subir los datos", style:TextStyle(color:Colors.white)),
+              SizedBox(height:20),
+              CircularProgressIndicator(
+
+                valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+             ],
+           ),
+         ),
+            actions: <Widget>[
+          
+            
+          ],
+          backgroundColor: Colors.grey[800],
+        );
+      });
+    }
   
 }

@@ -24,14 +24,15 @@ class _ColumnaDosServiceState extends State<ColumnaDosService>with SingleTickerP
 
 
  SwiperController _controller = SwiperController();
-
+  bool isLoaded=false;
+  
 
    List<Service> iconModelListService=[];
     void getlistaCategory(String idShop)async{
     iconModelListService=await FetchData().getTopServicios(idShop);
     print('Tengo ${iconModelListService.length} serivicios');
     setState(() {
-      
+      isLoaded=true;
     });
   }
    
@@ -63,7 +64,20 @@ class _ColumnaDosServiceState extends State<ColumnaDosService>with SingleTickerP
             child:
             
             
-               
+                isLoaded==false? Container(
+           child: Center(
+             child: Column(   
+                          children:[
+                            SizedBox(height:MediaQuery.of(context).size.height*0.2),
+                        Container( 
+                          width: MediaQuery.of(context).size.width*0.7,
+                          height:MediaQuery.of(context).size.height*0.3, 
+             child: Transform.scale(
+                scale: 0.9,
+               child: CircularProgressIndicator())) 
+                        ]),
+       ),
+      ):
 
               iconModelListService.isEmpty?Container(
                 child: Column(

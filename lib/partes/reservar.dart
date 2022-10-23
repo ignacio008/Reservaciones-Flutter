@@ -41,6 +41,7 @@ class _ReservarState extends State<Reservar> {
   final nombre_usuario= TextEditingController();
   TextEditingController _textEditingController = TextEditingController();
   DateTime durationService;
+  DateTime durationService2;
   int weekDay;
 
  final List <String> conversion=[];
@@ -442,6 +443,8 @@ void initState() {
                                             ),
                                             onChanged: (DateTime value) {
                                               setState(() {
+                                               
+                                               
                                                   durationService = value;       
                                               });
                                             },
@@ -502,6 +505,12 @@ void initState() {
 
 
     void _selectDate(BuildContext context) async {
+      setState(() {
+        print(durationService);
+        durationService=null;
+        
+        print(durationService);
+      });
 FocusScope.of(context).requestFocus(new FocusNode());
      DateTime newSelectedDate = await showDatePicker(context: context, initialDate: _selectedDate != null ? _selectedDate : DateTime.now(), 
      firstDate:DateTime.now(),
